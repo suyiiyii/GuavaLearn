@@ -18,6 +18,14 @@ public class UserController {
         return new CommonResponse("注册成功");
     }
 
+    @PostMapping("/login")
+    public LoginResponse login(@Valid @RequestBody LoginRequest request) {
+        System.out.println(request.grant_type);
+        LoginResponse response = new LoginResponse();
+        response.setMessage("登录成功");
+        return response;
+    }
+
 
     @Data
     public static class RegisterRequest {
@@ -27,6 +35,25 @@ public class UserController {
         @NotBlank
         @Size(min = 6, max = 10)
         private String password;
+    }
+
+    @Data
+    public static class LoginRequest {
+        @NotBlank
+        private String grant_type;
+        @NotBlank
+        @Size(min = 6, max = 10)
+        private String username;
+        @NotBlank
+        @Size(min = 6, max = 10)
+        private String password;
+    }
+
+    @Data
+    public static class LoginResponse {
+        private String access_token;
+        private String token_type;
+        private String message;
     }
 
 }
