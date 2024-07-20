@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public LoginResponse login(@Valid @RequestBody LoginRequest request) {
+    public LoginResponse login(@Valid @ModelAttribute LoginRequest request) {
         System.out.println(request.grant_type);
         LoginResponse response = new LoginResponse();
         response.setMessage("登录成功");
