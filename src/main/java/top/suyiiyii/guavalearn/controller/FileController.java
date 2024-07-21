@@ -5,7 +5,6 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,7 +39,7 @@ public class FileController {
     @GetMapping("/download")
     public void download(HttpServletResponse response) throws IOException {
         List<Grade> grades = gradeService.getAllGrades();
-        // Step 2: Generate CSV content
+
         StringWriter writer = new StringWriter();
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("id","studentid", "grade"));
         for (Grade grade : grades) {
@@ -49,7 +48,6 @@ public class FileController {
         csvPrinter.flush();
         csvPrinter.close();
 
-        // Step 3: Send CSV to user
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", "attachment; filename=\"grades.csv\"");
         InputStream inputStream = new ByteArrayInputStream(writer.toString().getBytes(StandardCharsets.UTF_8));
