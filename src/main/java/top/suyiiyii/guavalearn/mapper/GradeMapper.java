@@ -1,6 +1,7 @@
 package top.suyiiyii.guavalearn.mapper;
 
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import top.suyiiyii.guavalearn.models.Grade;
@@ -19,6 +20,9 @@ CREATE TABLE `grade` (
 public interface GradeMapper {
 
     @Select("select * from grade where studentid = #{studentid}")
-    public Grade getGradeById(String studentid);
+    Grade getGradeById(String studentid);
+
+    @Insert("insert into grade (studentid, grade) values (#{studentid}, #{grade})")
+    void addGrade(Grade grade);
 
 }
