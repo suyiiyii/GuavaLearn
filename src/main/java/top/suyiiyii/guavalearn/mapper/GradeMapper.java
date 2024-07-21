@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import top.suyiiyii.guavalearn.models.Grade;
 
+import java.util.List;
+
 /*
 grade 表结构
 CREATE TABLE `grade` (
@@ -25,4 +27,16 @@ public interface GradeMapper {
     @Insert("insert into grade (studentid, grade) values (#{studentid}, #{grade})")
     void addGrade(Grade grade);
 
+    @Insert({
+            "<script>",
+            "insert into grade (studentid, grade) values ",
+            "<foreach collection='list' item='grade' separator=','>",
+            "(#{grade.studentid}, #{grade.grade})",
+            "</foreach>",
+            "</script>"
+    })
+    void addGrades(List<Grade> grades);
+
+    @Select("select * from grade")
+    List<Grade> getAllGrades();
 }
