@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import top.suyiiyii.guavalearn.dto.JwtData;
+import top.suyiiyii.guavalearn.mapper.RbacMapper;
 import top.suyiiyii.guavalearn.mapper.UserMapper;
 import top.suyiiyii.guavalearn.models.User;
 import top.suyiiyii.guavalearn.utils.JwtUtils;
@@ -17,13 +18,15 @@ import java.security.MessageDigest;
 @Service
 public class UserService {
 
+    private final RbacMapper rbacMapper;
     UserMapper userMapper;
     ObjectMapper objectMapper = new ObjectMapper();
     @Value("${jwt.secret}")
     private String secret;
 
-    public UserService(UserMapper userMapper) {
+    public UserService(UserMapper userMapper, RbacMapper rbacMapper) {
         this.userMapper = userMapper;
+        this.rbacMapper = rbacMapper;
     }
 
     public static String sha256(String input) {
@@ -59,6 +62,7 @@ public class UserService {
         user.setUsername(username);
         user.setHashedPassword(sha256(password));
         addUser(user);
+        rbacMapper.addUserRole(username, 1);
     }
 
     public String login(String username, String password) {
@@ -71,7 +75,7 @@ public class UserService {
         }
         JwtData jwtData = new JwtData();
         jwtData.setUsername(username);
-        String jwtData_str = null;
+        String jwtData_str;
         try {
             jwtData_str = objectMapper.writeValueAsString(jwtData);
         } catch (JsonProcessingException e) {
