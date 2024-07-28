@@ -21,8 +21,8 @@ public class GradeService {
     @Autowired
     private GradeMapper gradeMapper;
 
-    public Grade getGradeByStudentid(String studentId) {
-        return gradeMapper.getGradeById(studentId);
+    public GradeDto getGradeByStudentid(String studentId) {
+        return modelMapper.map(gradeMapper.getGradeById(studentId), GradeDto.class);
     }
 
     public void addGrade(GradeDto grade) {

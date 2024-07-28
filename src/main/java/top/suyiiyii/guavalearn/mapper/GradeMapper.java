@@ -21,12 +21,13 @@ CREATE TABLE `grade` (
 @Mapper
 public interface GradeMapper {
 
-    @Select("select * from grade where studentid = #{studentid}")
+    @Select("select * from grade where studentid = #{studentid} limit 1")
     Grade getGradeById(String studentid);
 
     @Insert("insert into grade (studentid, grade) values (#{studentid}, #{grade})")
     void addGrade(Grade grade);
 
+    //TODO:xml方式
     @Insert({
             "<script>",
             "insert into grade (studentid, grade) values ",

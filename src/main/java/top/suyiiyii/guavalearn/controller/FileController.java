@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import top.suyiiyii.guavalearn.dto.CommonResponse;
 import top.suyiiyii.guavalearn.models.Grade;
 import top.suyiiyii.guavalearn.service.GradeService;
 
@@ -24,7 +25,7 @@ public class FileController {
     private GradeService gradeService;
 
     @PostMapping("/upload")
-    public void upload(@RequestParam("file") MultipartFile file) throws IOException {
+    public CommonResponse upload(@RequestParam("file") MultipartFile file) throws IOException {
         System.out.println("upload");
         File tempFile = Files.createTempFile(null, null).toFile();
         file.transferTo(tempFile);
@@ -33,6 +34,7 @@ public class FileController {
         System.out.println("fileReader = " + fileReader);
 
         gradeService.addByCsvFile(fileReader);
+        return new CommonResponse("上传成功");
 
     }
 
@@ -41,7 +43,7 @@ public class FileController {
         List<Grade> grades = gradeService.getAllGrades();
 
         StringWriter writer = new StringWriter();
-        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("id","studentid", "grade"));
+        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("studentid", "grade"));
         for (Grade grade : grades) {
             csvPrinter.printRecord(grade.getStudentid(), grade.getGrade());
         }
