@@ -15,4 +15,8 @@ public class BusinessException extends RuntimeException {
     public Code getCode() {
         return code;
     }
+
+    public static BusinessException of(Code code) {
+        return new BusinessException(code);
+    }
 }

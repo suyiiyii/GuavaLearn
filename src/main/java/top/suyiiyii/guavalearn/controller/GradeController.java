@@ -6,6 +6,8 @@ import top.suyiiyii.guavalearn.dto.CommonResponse;
 import top.suyiiyii.guavalearn.dto.GradeDto;
 import top.suyiiyii.guavalearn.models.Grade;
 import top.suyiiyii.guavalearn.service.GradeService;
+import top.suyiiyii.guavalearn.utils.exception.BusinessException;
+import top.suyiiyii.guavalearn.utils.result.Code;
 
 @RestController
 public class GradeController {
@@ -16,7 +18,11 @@ public class GradeController {
     @GetMapping("/grade/{studentId}")
     public GradeDto getGradeByStudentid(@PathVariable String studentId) {
         System.out.println("studentId = " + studentId);
-        return gradeService.getGradeByStudentid(studentId);
+        GradeDto gradeByStudentid = gradeService.getGradeByStudentid(studentId);
+        if (gradeByStudentid == null) {
+            throw BusinessException.of(Code.NOT_FOUND);
+        }
+        return gradeByStudentid;
     }
 
     @PostMapping("/grade")

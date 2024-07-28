@@ -22,7 +22,11 @@ public class GradeService {
     private GradeMapper gradeMapper;
 
     public GradeDto getGradeByStudentid(String studentId) {
-        return modelMapper.map(gradeMapper.getGradeById(studentId), GradeDto.class);
+        Grade grade = gradeMapper.getGradeById(studentId);
+        if (grade == null) {
+            return null;
+        }
+        return modelMapper.map(grade, GradeDto.class);
     }
 
     public void addGrade(GradeDto grade) {

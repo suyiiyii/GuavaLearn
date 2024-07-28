@@ -29,7 +29,6 @@ public class ResultHandler implements ResponseBodyAdvice<Object> {
         if (body instanceof Result) {
             return body;
         }
-        Code code = Code.SUCCESS;
-        return new Result<>(code.code(), code.message(), body);
+        return new Result<>(Code.SUCCESS, body);
     }
 }
