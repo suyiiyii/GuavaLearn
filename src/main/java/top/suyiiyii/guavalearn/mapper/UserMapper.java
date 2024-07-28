@@ -25,10 +25,10 @@ create table guava_learn.user
 @Mapper
 public interface UserMapper {
 
-    @Select("select * from user where username = #{username}")
+    @Select("select * from user where username = #{username} limit 1")
     User getUserByUsername(String username);
 
-    @Insert("insert into user (username, hashed_password, email, phone) values (#{username}, #{hashed_password}, #{email}, #{phone})")
+    @Insert("insert into user (username, hashed_password, email, phone) values (#{username}, #{hashedPassword}, #{email}, #{phone})")
     void addUser(User user);
 
 }

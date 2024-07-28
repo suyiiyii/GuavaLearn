@@ -12,11 +12,18 @@ public class BusinessException extends RuntimeException {
         this.code = code;
     }
 
+    public static BusinessException of(Code code) {
+        return new BusinessException(code);
+    }
+
     public Code getCode() {
         return code;
     }
 
-    public static BusinessException of(Code code) {
-        return new BusinessException(code);
+    @Override
+    public String toString() {
+        return "BusinessException{" +
+                "code=" + code +
+                '}';
     }
 }
