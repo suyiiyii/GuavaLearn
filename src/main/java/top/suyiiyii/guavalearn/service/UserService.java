@@ -9,8 +9,8 @@ import top.suyiiyii.guavalearn.mapper.RbacMapper;
 import top.suyiiyii.guavalearn.mapper.UserMapper;
 import top.suyiiyii.guavalearn.models.User;
 import top.suyiiyii.guavalearn.utils.JwtUtils;
-import top.suyiiyii.guavalearn.utils.exception.BusinessException;
-import top.suyiiyii.guavalearn.utils.result.Code;
+import top.suyiiyii.guavalearn.controller.exception.BusinessException;
+import top.suyiiyii.guavalearn.result.Code;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -29,8 +29,9 @@ public class UserService {
         this.rbacMapper = rbacMapper;
     }
 
-    public static String sha256(String input) {
+    public static String mySha256(String input) {
         try {
+            input = "suyiiyii" + input;
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(input.getBytes(StandardCharsets.UTF_8));
             StringBuilder hexString = new StringBuilder();
@@ -60,7 +61,7 @@ public class UserService {
     public void register(String username, String password) {
         User user = new User();
         user.setUsername(username);
-        user.setHashedPassword(sha256(password));
+        user.setHashedPassword(mySha256(password));
         addUser(user);
         rbacMapper.addUserRole(username, 1);
     }
@@ -70,7 +71,7 @@ public class UserService {
         if (user == null) {
             throw new BusinessException(Code.NOT_FOUND_USER);
         }
-        if (!user.getHashedPassword().equals(sha256(password))) {
+        if (!user.getHashedPassword().equals(mySha256(password))) {
             throw new BusinessException(Code.FAIL_WRONG_PASSWORD);
         }
         JwtData jwtData = new JwtData();

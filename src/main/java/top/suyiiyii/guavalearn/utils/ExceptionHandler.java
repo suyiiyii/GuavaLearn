@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import top.suyiiyii.guavalearn.utils.exception.BusinessException;
-import top.suyiiyii.guavalearn.utils.result.Code;
-import top.suyiiyii.guavalearn.utils.result.Result;
+import top.suyiiyii.guavalearn.controller.exception.BusinessException;
+import top.suyiiyii.guavalearn.result.Code;
+import top.suyiiyii.guavalearn.result.Result;
 
 @Slf4j
 @ControllerAdvice

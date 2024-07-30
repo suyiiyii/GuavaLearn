@@ -21,13 +21,11 @@ public class UserController {
 
     @PostMapping("/register")
     public void register(@Valid @RequestBody RegisterRequest request) {
-        System.out.println(request.getUsername());
         userService.register(request.getUsername(), request.getPassword());
     }
 
     @PostMapping("/login")
     public LoginResponse login(@Valid @ModelAttribute LoginRequest request) {
-        System.out.println(request.grant_type);
         String token = userService.login(request.getUsername(), request.getPassword());
         LoginResponse response = new LoginResponse();
         response.setMessage("登录成功");

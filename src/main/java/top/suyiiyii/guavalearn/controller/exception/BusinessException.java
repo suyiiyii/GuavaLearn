@@ -1,6 +1,6 @@
-package top.suyiiyii.guavalearn.utils.exception;
+package top.suyiiyii.guavalearn.controller.exception;
 
-import top.suyiiyii.guavalearn.utils.result.Code;
+import top.suyiiyii.guavalearn.result.Code;
 
 /*
 业务异常基类

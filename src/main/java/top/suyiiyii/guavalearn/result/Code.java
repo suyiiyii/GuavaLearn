@@ -1,4 +1,4 @@
-package top.suyiiyii.guavalearn.utils.result;
+package top.suyiiyii.guavalearn.result;
 
 /*
 统一结果集使用的状态码和对应的消息

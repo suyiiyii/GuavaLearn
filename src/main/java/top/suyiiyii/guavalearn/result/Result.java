@@ -1,4 +1,4 @@
-package top.suyiiyii.guavalearn.utils.result;
+package top.suyiiyii.guavalearn.result;
 
 import lombok.Data;
 

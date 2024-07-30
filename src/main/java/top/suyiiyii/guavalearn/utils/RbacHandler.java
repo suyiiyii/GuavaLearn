@@ -10,8 +10,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import top.suyiiyii.guavalearn.dto.JwtData;
 import top.suyiiyii.guavalearn.service.RbacService;
-import top.suyiiyii.guavalearn.utils.exception.BusinessException;
-import top.suyiiyii.guavalearn.utils.result.Code;
+import top.suyiiyii.guavalearn.controller.exception.BusinessException;
+import top.suyiiyii.guavalearn.result.Code;
 
 
 @Slf4j

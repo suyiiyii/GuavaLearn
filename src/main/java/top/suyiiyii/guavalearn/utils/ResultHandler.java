@@ -7,8 +7,8 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import top.suyiiyii.guavalearn.utils.result.Code;
-import top.suyiiyii.guavalearn.utils.result.Result;
+import top.suyiiyii.guavalearn.result.Code;
+import top.suyiiyii.guavalearn.result.Result;
 
 /*
 统一返回集处理拦截器

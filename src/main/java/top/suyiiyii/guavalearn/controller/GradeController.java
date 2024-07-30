@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.suyiiyii.guavalearn.dto.CommonResponse;
 import top.suyiiyii.guavalearn.dto.GradeDto;
-import top.suyiiyii.guavalearn.models.Grade;
 import top.suyiiyii.guavalearn.service.GradeService;
-import top.suyiiyii.guavalearn.utils.exception.BusinessException;
-import top.suyiiyii.guavalearn.utils.result.Code;
+import top.suyiiyii.guavalearn.controller.exception.BusinessException;
+import top.suyiiyii.guavalearn.result.Code;
 
 @RestController
 public class GradeController {
