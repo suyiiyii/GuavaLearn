@@ -15,3 +15,7 @@
 * Jwt token
 * 密码加盐
 * RBAC 权限认证
+
+# 第三周
+* 基于 Redisson 使用有序集合，实现排行榜
+* 基于 jsch 实现通过 ssh 协议连接 linux 机器，并查询基础信息
